@@ -39,7 +39,7 @@ if %course%=="‡–°‚Ì‚İ" ( set /a seconds=197+642 )
 
 set guidance=0
 
-if %errorlevel%>10 ( goto guidance_skip )
+if errorlevel 11 ( goto guidance_skip )
 
 choice /c:1230 /m "—U“±‚Í—v‚è‚Ü‚·‚©H 1:Œy‚­ 2:[‚­ 3:[‚­+ˆÓ¯•t‚¯ 0:•s—v" /n
 set guidance=%errorlevel%
@@ -50,7 +50,7 @@ if %guidance%==3 ( set /a seconds=%seconds%+762+623 )
 
 choice /c:yn /m "%course%‚Í%seconds%•b(1ŠÔ=3600•b)‚©‚©‚è‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H"
 
-if %errorlevel%==2 ( echo.&goto rtn ) 
+if errorlevel 2 ( echo.&goto rtn ) 
 
 :guidance_skip
 
