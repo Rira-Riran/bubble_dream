@@ -8,7 +8,7 @@ echo 泡夢のフォルダごとMainの中に入れてから進んでください。&echo.
 echo コースの選択をしてください。数値のものが泡夢のみ、禁忌(完成版)を含めるものはアルファベットです。&echo.
 
 @rem コースの選択
-choice /c:123456abcd0 /n /m "1:感覚共有(クリ)コース 2:感覚共有(性器)コース 3:体外ポルチオ開発コース 4:脳イキ完全調教コース 5:感覚共有連続コース 6:感覚共有・ポルチオ開発コース a:禁忌コース b:脳イキ完全調教～ストレッチ付き～コース c:脳イキフルコース～ストレッチ付き～ d:完全フルコース 0:睡眠のみ"
+choice /c:123456abcde0 /n /m "1:感覚共有(クリ)コース 2:感覚共有(性器)コース 3:体外ポルチオ開発コース 4:脳イキ完全調教コース 5:感覚共有連続コース 6:感覚共有・ポルチオ開発コース a:禁忌コース b:脳イキ完全調教～ストレッチ付き～コース c:脳イキフルコース～ストレッチ付き～ d:完全フルコース e:深睡眠コース 0:睡眠のみ"
 
 if %errorlevel%==1 ( set course="感覚共有(クリ)コース" )
 if %errorlevel%==2 ( set course="感覚共有(性器)コース" )
@@ -20,7 +20,8 @@ if %errorlevel%==7 ( set course="禁忌コース" )
 if %errorlevel%==8 ( set course="脳イキ完全調教～ストレッチ付き～コース" )
 if %errorlevel%==9 ( set course="脳イキフルコース～ストレッチ付き～" )
 if %errorlevel%==10 ( set course="完全フルコース" )
-if %errorlevel%==11 ( set course="睡眠のみ" )
+if %errorlevel%==11 ( set course="深睡眠コース" )
+if %errorlevel%==12 ( set course="睡眠のみ" )
 
 @rem 秒数をセット
 if %course%=="感覚共有(クリ)コース" ( set /a seconds=197+642+1211+113 )
@@ -33,7 +34,12 @@ if %course%=="禁忌コース" ( set /a seconds=197+642+773+776+113 )
 if %course%=="脳イキ完全調教～ストレッチ付き～コース" ( set /a seconds=197+642+1520+113+773 )
 if %course%=="脳イキフルコース～ストレッチ付き～" ( set /a seconds=197+642+1211+982+1520+113+773 )
 if %course%=="完全フルコース" ( set /a seconds=197+642+1211+982+635+1520+773+776+113 )
+if %course%=="深睡眠コース" (set /a seconds=197+642+773+762 )
 if %course%=="睡眠のみ" ( set /a seconds=197+642 )
+
+set guidance=0
+
+if errorlevel 11 ( goto guidance_skip )
 
 choice /c:1230 /m "誘導は要りますか？ 1:軽く 2:深く 3:深く+意識付け 0:不要" /n
 set guidance=%errorlevel%
@@ -44,7 +50,9 @@ if %guidance%==3 ( set /a seconds=%seconds%+762+623 )
 
 choice /c:yn /m "%course%は%seconds%秒(1時間=3600秒)かかります。よろしいですか？"
 
-if %errorlevel%==2 ( echo.&goto rtn ) 
+if errorlevel 2 ( echo.&goto rtn ) 
+
+:guidance_skip
 
 @rem 30秒待機
 timeout /t 30 /nobreak
@@ -155,6 +163,13 @@ if %course%=="完全フルコース" (
   timeout /t 776 /nobreak  
  "%cd%\泡 夢 ～脳イキ音声～ (非常に依存性が高いのでご注意下さい)\wav\トラック7　催眠解除.wav"
   timeout /t 113 /nobreak  
+)
+
+if %course%=="深睡眠コース" (
+ "%cd%\禁忌　完成\禁忌事前_01.mp3"
+  timeout /t 773 /nobreak  
+  "%cd%\泡 夢 ～脳イキ音声～ (非常に依存性が高いのでご注意下さい)\800DL特典\深層催眠_01.mp3"
+  timeout /t 762 /nobreak      
 )
 
 "%cd%\泡 夢 ～脳イキ音声～ (非常に依存性が高いのでご注意下さい)\50DL特典\睡眠.wav"
